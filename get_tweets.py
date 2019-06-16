@@ -14,20 +14,18 @@ import numpy as np
 #  https://www.freecodecamp.org/news/learn-python-by-analyzing-donald-trumps-tweets-ccdf156cb5a3/
 
 
-#import twittertwitter_api = twitter.Api(consumer_key="YOUR_CONSUMER_KEY", consumer_secret="YOUR_CONSUMER_SECRET",  access_token_key="YOUR_ACCESS_TOKEN", access_token_secret="YOUR_ACCESS_TOKEN_SECRET",  tweet_mode='extended')twitter_api.VerifyCredentials()
-#last_tweet = twitter_api.GetUserTimeline(screen_name="realDonaldTrump", count=10)
+# Import creds:
+#  (refactor credentials files into one) - credentials.py & .cred.json - both already in .gitignore.
 
+from credentials import *    # I have a local file with all the OAuth API key details.
 
-# We import our access keys:
-from credentials import *    # This will allow us to use the keys as variables
-
-# API's setup:
+# API  setup:
 def twitter_setup():
     """
     Utility function to setup the Twitter's API
     with our access keys provided.
     """
-    # Authentication and access using keys:
+    # Use tweepy for Oauth handler authentication and keys:
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
@@ -35,18 +33,16 @@ def twitter_setup():
     api = tweepy.API(auth)
     return api
 
-# We create an extractor object:
-extractor = twitter_setup()
+# Create an grabtweets object:
+grabtweets = twitter_setup()
 
 # We create a tweet list as follows:
-tweets = extractor.user_timeline(screen_name="realDonaldTrump", count=200)
+tweets = grabtweets.user_timeline(screen_name="realDonaldTrump", count=200)
 print("Number of tweets extracted: {}.\n".format(len(tweets)))
 
-# We print the most recent 5 tweets:
-print("5 recent tweets:\n")
-for tweet in tweets[:5]:
+# Print the most recent 5 tweets:
+print("Most recent 10 tweets:\n")
+for tweet in tweets[:10]:
     print(tweet.text)
     print()
 
-
-#  refactor credentials files into one, both already in .gitignore.
