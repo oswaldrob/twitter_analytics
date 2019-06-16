@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Credentials
+.cred.json
+credentials.py
+
 # Distribution / packaging
 .Python
 build/
