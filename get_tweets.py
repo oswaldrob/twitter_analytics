@@ -41,8 +41,8 @@ tweets = grabtweets.user_timeline(screen_name="realDonaldTrump", count=200)
 print("Number of tweets extracted: {}.\n".format(len(tweets)))
 
 # Print the most recent 5 tweets:
-print("Most recent 10 tweets:\n")
+print("Most recent 10 tweets (with times):\n")
 for tweet in tweets[:10]:
     print(tweet.text)
+    print(tweet.created_at)
     print()
-
