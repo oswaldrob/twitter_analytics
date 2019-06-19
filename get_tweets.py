@@ -46,3 +46,8 @@ print("Number of tweets extracted: {}.\n".format(len(tweets)))
 print("Most recent 10 tweets (with times):\n")
 for tweet in tweets[:10]:
     print(tweet.full_text, tweet.created_at, end = "\n\n")
+
+
+
+# Full text example of each tweet object
+pprint.pprint(tweets[0].__dict__)
