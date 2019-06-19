@@ -6,6 +6,7 @@ import logging
 import tweepy
 import pandas as pd
 import numpy as np
+import pprint
 
 
 #  https://github.com/bpb27/trump-tweet-archive/blob/master/server_scripts/get_trump.py
@@ -29,20 +30,19 @@ def twitter_setup():
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
-    # Return API with authentication:
+    # Return API with authentication
     api = tweepy.API(auth)
     return api
 
-# Create an grabtweets object:
+# Create an grabtweets object
 grabtweets = twitter_setup()
 
-# We create a tweet list as follows:
-tweets = grabtweets.user_timeline(screen_name="realDonaldTrump", count=200)
+
+# Create a tweet list
+tweets = grabtweets.user_timeline(screen_name="realDonaldTrump", count=200, tweet_mode="extended")
 print("Number of tweets extracted: {}.\n".format(len(tweets)))
 
 # Print the most recent 5 tweets:
 print("Most recent 10 tweets (with times):\n")
 for tweet in tweets[:10]:
-    print(tweet.text)
-    print(tweet.created_at)
-    print()
+    print(tweet.full_text, tweet.created_at, end = "\n\n")
